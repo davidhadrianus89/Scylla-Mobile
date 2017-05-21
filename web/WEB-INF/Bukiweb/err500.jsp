@@ -1,7 +1,7 @@
 <%-- 
     Document   : 500
     Created on : Nov 6, 2015, 2:17:10 PM
-    Author     : Gustiana
+    Author     : Suyadi
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
