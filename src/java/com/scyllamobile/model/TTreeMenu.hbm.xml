@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 9, 2017 11:10:36 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.scyllamobile.model.TTreeMenu" optimistic-lock="version" schema="public" table="t_tree_menu">
+    <composite-id class="com.scyllamobile.model.TTreeMenuId" name="id">
+      <key-property name="userGroupId" type="string">
+        <column length="10" name="user_group_id"/>
+      </key-property>
+      <key-property name="menuId" type="string">
+        <column length="11" name="menu_id"/>
+      </key-property>
+    </composite-id>
+  </class>
+</hibernate-mapping>

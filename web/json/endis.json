@@ -1,0 +1,4 @@
+{"disable":[
+	{ "jenis":"PBB", "ket_dis":false},
+	{ "jenis":"PDRD", "ket_dis":true}
+]}

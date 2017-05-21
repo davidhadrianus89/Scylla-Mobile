@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 9, 2017 11:10:36 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.scyllamobile.model.TUnit" optimistic-lock="version" schema="public" table="t_unit">
+    <id name="unitid" type="string">
+      <column length="10" name="unitid"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="sellerid" type="string">
+      <column length="10" name="sellerid" not-null="true"/>
+    </property>
+    <property name="unitname" type="string">
+      <column length="100" name="unitname"/>
+    </property>
+    <property name="description" type="string">
+      <column length="150" name="description"/>
+    </property>
+    <property name="status" type="java.lang.Integer">
+      <column name="status"/>
+    </property>
+  </class>
+</hibernate-mapping>

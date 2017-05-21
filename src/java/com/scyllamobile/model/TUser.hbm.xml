@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 9, 2017 11:10:36 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="com.scyllamobile.model.TUser" optimistic-lock="version" schema="public" table="t_user">
+    <id name="userId" type="string">
+      <column length="20" name="user_id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="userGroup" type="string">
+      <column length="20" name="user_group" not-null="true"/>
+    </property>
+    <property name="userPassword" type="string">
+      <column length="50" name="user_password" not-null="true"/>
+    </property>
+    <property name="email" type="string">
+      <column length="100" name="email" not-null="true"/>
+    </property>
+    <property name="telepon" type="string">
+      <column length="16" name="telepon" not-null="true"/>
+    </property>
+    <property name="statusActive" type="string">
+      <column length="1" name="status_active" not-null="true"/>
+    </property>
+    <property name="statusLogin" type="string">
+      <column length="1" name="status_login" not-null="true"/>
+    </property>
+    <property name="nama" type="string">
+      <column length="50" name="nama"/>
+    </property>
+  </class>
+</hibernate-mapping>

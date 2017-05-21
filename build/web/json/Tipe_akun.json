@@ -1,0 +1,7 @@
+{"Tipe_trans":[
+	{ "kode":"00", "nama":"not specified"},
+	{ "kode":"10", "nama":"saving account"},
+	{ "kode":"20", "nama":"checking account"},
+	{ "kode":"30", "nama":"credit account"},
+	{ "kode":"40", "nama":"Undefined"}
+]}
