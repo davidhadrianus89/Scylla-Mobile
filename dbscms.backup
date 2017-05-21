@@ -1,0 +1,464 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.2.4
+-- Dumped by pg_dump version 9.2.4
+-- Started on 2017-05-21 14:34:25
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 176 (class 3079 OID 11727)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 1975 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 168 (class 1259 OID 376842)
+-- Name: t_group; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE t_group (
+    groupid character varying(10) NOT NULL,
+    sellerid character varying(10) NOT NULL,
+    groupname character varying(100),
+    description character varying(150),
+    status integer,
+    tes character varying(1)
+);
+
+
+ALTER TABLE public.t_group OWNER TO postgres;
+
+--
+-- TOC entry 169 (class 1259 OID 376845)
+-- Name: t_member; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE t_member (
+    memberid character varying(6) NOT NULL,
+    cif character varying(20) NOT NULL,
+    nama character varying(50) NOT NULL,
+    npwp character varying(30),
+    email character varying(30),
+    cab integer NOT NULL,
+    lok integer NOT NULL,
+    alamat character varying(50),
+    phone character varying(15),
+    fax character varying(15),
+    homepage character varying(30),
+    cp_name character varying(50),
+    cp_number character varying(20),
+    principle integer,
+    debitur integer,
+    role integer,
+    cstartdate bigint,
+    period integer,
+    pay_method integer,
+    crd_method integer,
+    int_rate numeric,
+    int_day integer,
+    dsc_rate numeric,
+    dsc_day integer,
+    penalty numeric,
+    invoice_day integer,
+    rek_giro numeric,
+    rek_pinj numeric,
+    sts_active integer,
+    status_app integer,
+    tes character varying(1)
+);
+
+
+ALTER TABLE public.t_member OWNER TO postgres;
+
+--
+-- TOC entry 170 (class 1259 OID 376851)
+-- Name: t_product; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE t_product (
+    id_product character varying(20) NOT NULL,
+    prod_name character varying(50) NOT NULL,
+    prod_code character varying(20) NOT NULL,
+    groupid character varying(10) NOT NULL,
+    unitid character varying(10) NOT NULL,
+    info text,
+    valuta character varying(5),
+    harga bigint,
+    stok integer,
+    pict text,
+    condition text,
+    status integer,
+    tes character varying(1)
+);
+
+
+ALTER TABLE public.t_product OWNER TO postgres;
+
+--
+-- TOC entry 171 (class 1259 OID 376857)
+-- Name: t_tree_menu; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE t_tree_menu (
+    user_group_id character varying(10) NOT NULL,
+    menu_id character varying(11) NOT NULL
+);
+
+
+ALTER TABLE public.t_tree_menu OWNER TO postgres;
+
+--
+-- TOC entry 172 (class 1259 OID 376860)
+-- Name: t_unit; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE t_unit (
+    unitid character varying(10) NOT NULL,
+    sellerid character varying(10) NOT NULL,
+    unitname character varying(100),
+    description character varying(150),
+    status integer
+);
+
+
+ALTER TABLE public.t_unit OWNER TO postgres;
+
+--
+-- TOC entry 173 (class 1259 OID 376863)
+-- Name: t_user; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE t_user (
+    user_id character varying(20) NOT NULL,
+    user_group character varying(20),
+    user_password character varying(50),
+    email character varying(100),
+    telepon character varying(16),
+    status_active character varying(1),
+    status_login character varying(1),
+    nama character varying(50),
+    roles character varying(1)
+);
+
+
+ALTER TABLE public.t_user OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 376866)
+-- Name: t_user_group; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE t_user_group (
+    user_group_id character varying(10) NOT NULL,
+    status character varying(1) NOT NULL,
+    description character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.t_user_group OWNER TO postgres;
+
+--
+-- TOC entry 175 (class 1259 OID 376869)
+-- Name: t_user_menu; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE t_user_menu (
+    menu_id character varying(10) NOT NULL,
+    menu_name character varying(100) NOT NULL,
+    menu_address character varying(100) NOT NULL,
+    menu_parent character varying(10),
+    menu_link character varying(50)
+);
+
+
+ALTER TABLE public.t_user_menu OWNER TO postgres;
+
+--
+-- TOC entry 1960 (class 0 OID 376842)
+-- Dependencies: 168
+-- Data for Name: t_group; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY t_group (groupid, sellerid, groupname, description, status, tes) FROM stdin;
+4	USER	GROUP USER	USER PUNYA	1	\N
+1	ADMIN	group 1	coba update	1	\N
+3	ADMIN	GROUP 3	COBA LAGI EDIT GROUP	1	\N
+5	ADMIN	GROUP 5	coba add group	1	\N
+8	SELLER	BETON	TEST	1	\N
+7	SELLER	PAKU PAYUNG	PAKU YANG TERBUAT DARI BAJA KUAT	1	\N
+9	SELLER	TRONTON	TRONTON	1	\N
+6	SELLER	SEMEN	GROUP SEMEN PILIHAN 123	1	\N
+10	SELLER	BATU BATA	BATU BATA TERBAIK	1	\N
+\.
+
+
+--
+-- TOC entry 1961 (class 0 OID 376845)
+-- Dependencies: 169
+-- Data for Name: t_member; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY t_member (memberid, cif, nama, npwp, email, cab, lok, alamat, phone, fax, homepage, cp_name, cp_number, principle, debitur, role, cstartdate, period, pay_method, crd_method, int_rate, int_day, dsc_rate, dsc_day, penalty, invoice_day, rek_giro, rek_pinj, sts_active, status_app, tes) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1962 (class 0 OID 376851)
+-- Dependencies: 170
+-- Data for Name: t_product; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY t_product (id_product, prod_name, prod_code, groupid, unitid, info, valuta, harga, stok, pict, condition, status, tes) FROM stdin;
+99	PAKU PAYUNG BAJA	PP001	7	7	PAKU DENGAN KUALITAS TERBAIK	Rp.	99	100	IMG20170517170556.jpg	KONDISI MASIH BARU	4	\N
+66	PROCUCT ANDALAN	666	7	8	TEST	Rp.	66	100	IMG20170515112505.jpg	HJAJ	2	\N
+54	PAKU TEMBOK mantap	78	7	9	TEST	Rp.	54	100	IMG20170517144631.jpg	YAYAYA	3	\N
+222	TRONTON	4567	9	7	TRONTON BEST SELLER ever	Rp.	222	100	IMG20170517152036.png	SECOND	1	\N
+111	SEMEN BOSOWA	1234	6	5	SEMEN BOSAWA BERKUALITAS TERBAIK	Rp.	111	8888	IMG20170520142532.png	BARU	3	\N
+\.
+
+
+--
+-- TOC entry 1963 (class 0 OID 376857)
+-- Dependencies: 171
+-- Data for Name: t_tree_menu; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY t_tree_menu (user_group_id, menu_id) FROM stdin;
+9	A01
+9	A13
+9	A14
+9	A12
+3	D01
+3	D12
+3	D13
+3	D14
+2	A01
+2	A16
+3	A01
+3	A17
+10	A01
+10	A18
+11	A01
+11	A19
+4	D01
+4	D11
+4	D12
+1	A11
+1	A01
+1	D01
+1	D11
+1	D12
+1	D13
+1	D14
+1	A12
+1	A13
+1	A14
+1	A15
+1	A16
+1	A17
+2	D12
+2	D01
+4	D13
+4	D14
+4	E01
+4	F01
+4	G01
+\.
+
+
+--
+-- TOC entry 1964 (class 0 OID 376860)
+-- Dependencies: 172
+-- Data for Name: t_unit; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY t_unit (unitid, sellerid, unitname, description, status) FROM stdin;
+1	ADMIN	unit test	unit test	1
+2	ADMIN	NEW UNIT	YEAH YEAH	1
+3	USER	Unit User 1	okeh broh	1
+4	ADMIN	UNIT PERTAMA	UNIT PERTAMA	1
+6	ADMIN	TEST YAYAYA	TEST YAYAYA	1
+7	SELLER	UNIT PERKASA	UNIT BARU	1
+5	SELLER	UNIT PERTAMA	YAYAYAYA	1
+8	SELLER	UNIT KEDUA	UNIT KEDUA	1
+9	SELLER	UNIT KETIGA	UNIT KETIGA	1
+10	SELLER	UNIT KU	test	1
+\.
+
+
+--
+-- TOC entry 1965 (class 0 OID 376863)
+-- Dependencies: 173
+-- Data for Name: t_user; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY t_user (user_id, user_group, user_password, email, telepon, status_active, status_login, nama, roles) FROM stdin;
+CHECKERPB	2	admin	checkerpb@bukopin.co.id	7777	1	0	CHECKER PELAKSANA BANK	\N
+ADMIN	4	ADMIN	admin@bukopin.com	0213	1	0	SUPERADMIN	\N
+SELLER	9	SELLER	seller@bukopin.com	023177777	1	1	\N	\N
+APPROVEPB	3	APPROVEPB	approvalpb@gmail.com	081394826970	1	1	\N	\N
+\.
+
+
+--
+-- TOC entry 1966 (class 0 OID 376866)
+-- Dependencies: 174
+-- Data for Name: t_user_group; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY t_user_group (user_group_id, status, description) FROM stdin;
+3	1	APPROVAL PELAKSANA BANK
+4	1	SUPER ADMIN PELAKSANA BANK
+5	1	USER MONITORING PELAKSANA BANK
+6	1	MAKER BUYER
+7	1	CHECKER BUYER
+8	1	APPROVAL BUYER
+9	1	MAKER SELLER
+10	1	CHECKER SELLER
+11	1	APPROVAL SELLER
+1	1	SUPER ADMIN
+2	1	ADMIN
+\.
+
+
+--
+-- TOC entry 1967 (class 0 OID 376869)
+-- Dependencies: 175
+-- Data for Name: t_user_menu; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY t_user_menu (menu_id, menu_name, menu_address, menu_parent, menu_link) FROM stdin;
+A12	MASTER PRODUCT	masterProduct	A01	\N
+A14	MAINTENANCE PRODUCT UNIT	masterProductUnit	A01	\N
+A13	MAINTENANCE PRODUCT GROUP	masterProductGroup	A01	\N
+A15	AUTHORIZE EDIT DETAIL PRODUCT REQUEST	masterProduct	A01	\N
+A11	ADD PRODUCT	addProduct	A01	\N
+A19	APPROVE EDIT DETAIL PRODUCT REQUEST	approveEditDetailProductRequest	A01	\N
+A18	CHECKER EDIT DETAIL PRODUCT REQUEST	approveEditDetailProductRequest	A01	\N
+A16	CHECKER ADD PRODUCT REQUEST	approveEditDetailProductRequest	A01	\N
+A17	APPROVE ADD PRODUCT REQUEST	approveEditDetailProductRequest	A01	\N
+A01	PRODUCT MAINTENANCE	parent	0	\N
+D01	MASTERS	userMaintenance	0	\N
+D11	USERS	userMaintenance	D01	\N
+D12	DEVICES	masterProductGroup	D01	\N
+D13	ROLES	masterProductUnit	D01	\N
+E01	TRANSACTIONS	parent	0	\N
+F01	UTILITY	parent	0	\N
+G01	HELP	parent	0	\N
+\.
+
+
+--
+-- TOC entry 1945 (class 2606 OID 376873)
+-- Name: t_group_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY t_group
+    ADD CONSTRAINT t_group_pk PRIMARY KEY (groupid);
+
+
+--
+-- TOC entry 1947 (class 2606 OID 376875)
+-- Name: t_member_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY t_member
+    ADD CONSTRAINT t_member_pkey PRIMARY KEY (memberid, cif);
+
+
+--
+-- TOC entry 1949 (class 2606 OID 376877)
+-- Name: t_product_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY t_product
+    ADD CONSTRAINT t_product_pkey PRIMARY KEY (id_product);
+
+
+--
+-- TOC entry 1951 (class 2606 OID 376879)
+-- Name: t_tree_menu_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY t_tree_menu
+    ADD CONSTRAINT t_tree_menu_pkey PRIMARY KEY (user_group_id, menu_id);
+
+
+--
+-- TOC entry 1953 (class 2606 OID 376881)
+-- Name: t_unit_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY t_unit
+    ADD CONSTRAINT t_unit_pkey PRIMARY KEY (unitid);
+
+
+--
+-- TOC entry 1957 (class 2606 OID 376883)
+-- Name: t_user_group_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY t_user_group
+    ADD CONSTRAINT t_user_group_pkey PRIMARY KEY (user_group_id);
+
+
+--
+-- TOC entry 1959 (class 2606 OID 376885)
+-- Name: t_user_menu_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY t_user_menu
+    ADD CONSTRAINT t_user_menu_pkey PRIMARY KEY (menu_id);
+
+
+--
+-- TOC entry 1955 (class 2606 OID 376887)
+-- Name: t_user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY t_user
+    ADD CONSTRAINT t_user_pkey PRIMARY KEY (user_id);
+
+
+--
+-- TOC entry 1974 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2017-05-21 14:34:26
+
+--
+-- PostgreSQL database dump complete
+--
+
