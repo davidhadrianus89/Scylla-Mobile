@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 9, 2017 11:10:36 AM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 23, 2017 2:28:05 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.scyllamobile.model.TUserMenu" optimistic-lock="version" schema="public" table="t_user_menu">
-    <id name="menuId" type="string">
-      <column length="10" name="menu_id"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="menuName" type="string">
-      <column length="100" name="menu_name" not-null="true"/>
-    </property>
-    <property name="menuAddress" type="string">
-      <column length="100" name="menu_address" not-null="true"/>
-    </property>
-    <property name="menuParent" type="string">
-      <column length="10" name="menu_parent"/>
-    </property>
-    <property name="menuLink" type="string">
-      <column length="50" name="menu_link"/>
-    </property>
-  </class>
+    <class name="com.scyllamobile.model.TUserMenu" table="t_user_menu" schema="public" optimistic-lock="version">
+        <id name="menuId" type="string">
+            <column name="menu_id" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="menuName" type="string">
+            <column name="menu_name" length="100" not-null="true" />
+        </property>
+        <property name="menuAddress" type="string">
+            <column name="menu_address" length="100" not-null="true" />
+        </property>
+        <property name="menuParent" type="string">
+            <column name="menu_parent" length="10" />
+        </property>
+        <property name="menuLink" type="string">
+            <column name="menu_link" length="50" />
+        </property>
+    </class>
 </hibernate-mapping>

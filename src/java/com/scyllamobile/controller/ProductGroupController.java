@@ -73,7 +73,13 @@ public class ProductGroupController {
 
             int counter = gpd.checkGroup(groupdesc) + 1;
 
-            TGroup group = new TGroup(String.valueOf(counter), sellerid, groupname, groupdesc, 1);
+            TGroup group = new TGroup();
+            
+            group.setGroupid(String.valueOf(counter));
+            group.setSellerid(sellerid);
+            group.setGroupname(groupname);
+            group.setDescription(groupdesc);
+            group.setStatus(1);
 
             int ret = gpd.saveGroup(group);
 
@@ -106,7 +112,13 @@ public class ProductGroupController {
 
         try {
             GroupProductDao gpd = new GroupProducDaotImp();
-            TGroup group = new TGroup(groupid, sellerid, groupname, groupdesc, 1);
+            TGroup group = new TGroup();
+            
+            group.setGroupid(groupid);
+            group.setSellerid(sellerid);
+            group.setGroupname(groupname);
+            group.setDescription(groupdesc);
+            group.setStatus(1);
 
             int ret = gpd.saveGroup(group);
 

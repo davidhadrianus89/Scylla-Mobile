@@ -1,17 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 9, 2017 11:10:36 AM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 23, 2017 2:28:05 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.scyllamobile.model.TUserGroup" optimistic-lock="version" schema="public" table="t_user_group">
-    <id name="userGroupId" type="string">
-      <column length="10" name="user_group_id"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="status" type="string">
-      <column length="1" name="status" not-null="true"/>
-    </property>
-    <property name="description" type="string">
-      <column length="100" name="description" not-null="true"/>
-    </property>
-  </class>
+    <class name="com.scyllamobile.model.TUserGroup" table="t_user_group" schema="public" optimistic-lock="version">
+        <id name="userGroupId" type="string">
+            <column name="user_group_id" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="status" type="string">
+            <column name="status" length="1" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="100" not-null="true" />
+        </property>
+    </class>
 </hibernate-mapping>

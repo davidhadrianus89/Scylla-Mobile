@@ -1,5 +1,5 @@
 package com.scyllamobile.model;
-// Generated May 9, 2017 11:10:35 AM by Hibernate Tools 4.3.1
+// Generated May 23, 2017 2:27:59 PM by Hibernate Tools 4.3.1
 
 
 
@@ -17,21 +17,16 @@ public class TUser  implements java.io.Serializable {
      private String statusActive;
      private String statusLogin;
      private String nama;
+     private String roles;
 
     public TUser() {
     }
 
 	
-    public TUser(String userId, String userGroup, String userPassword, String email, String telepon, String statusActive, String statusLogin) {
+    public TUser(String userId) {
         this.userId = userId;
-        this.userGroup = userGroup;
-        this.userPassword = userPassword;
-        this.email = email;
-        this.telepon = telepon;
-        this.statusActive = statusActive;
-        this.statusLogin = statusLogin;
     }
-    public TUser(String userId, String userGroup, String userPassword, String email, String telepon, String statusActive, String statusLogin, String nama) {
+    public TUser(String userId, String userGroup, String userPassword, String email, String telepon, String statusActive, String statusLogin, String nama, String roles) {
        this.userId = userId;
        this.userGroup = userGroup;
        this.userPassword = userPassword;
@@ -40,6 +35,7 @@ public class TUser  implements java.io.Serializable {
        this.statusActive = statusActive;
        this.statusLogin = statusLogin;
        this.nama = nama;
+       this.roles = roles;
     }
    
     public String getUserId() {
@@ -97,6 +93,13 @@ public class TUser  implements java.io.Serializable {
     
     public void setNama(String nama) {
         this.nama = nama;
+    }
+    public String getRoles() {
+        return this.roles;
+    }
+    
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
 

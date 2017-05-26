@@ -1,5 +1,5 @@
 package com.scyllamobile.model;
-// Generated May 9, 2017 11:10:35 AM by Hibernate Tools 4.3.1
+// Generated May 23, 2017 2:27:59 PM by Hibernate Tools 4.3.1
 
 
 
@@ -10,10 +10,10 @@ public class TProduct  implements java.io.Serializable {
 
 
      private String idProduct;
+     private TGroup TGroup;
+     private TUnit TUnit;
      private String prodName;
      private String prodCode;
-     private String groupid;
-     private String unitid;
      private String info;
      private String valuta;
      private Long harga;
@@ -21,24 +21,25 @@ public class TProduct  implements java.io.Serializable {
      private String pict;
      private String condition;
      private Integer status;
+     private String tes;
 
     public TProduct() {
     }
 
 	
-    public TProduct(String idProduct, String prodName, String prodCode, String groupid, String unitid) {
+    public TProduct(String idProduct, TGroup TGroup, TUnit TUnit, String prodName, String prodCode) {
         this.idProduct = idProduct;
+        this.TGroup = TGroup;
+        this.TUnit = TUnit;
         this.prodName = prodName;
         this.prodCode = prodCode;
-        this.groupid = groupid;
-        this.unitid = unitid;
     }
-    public TProduct(String idProduct, String prodName, String prodCode, String groupid, String unitid, String info, String valuta, Long harga, Integer stok, String pict, String condition, Integer status) {
+    public TProduct(String idProduct, TGroup TGroup, TUnit TUnit, String prodName, String prodCode, String info, String valuta, Long harga, Integer stok, String pict, String condition, Integer status, String tes) {
        this.idProduct = idProduct;
+       this.TGroup = TGroup;
+       this.TUnit = TUnit;
        this.prodName = prodName;
        this.prodCode = prodCode;
-       this.groupid = groupid;
-       this.unitid = unitid;
        this.info = info;
        this.valuta = valuta;
        this.harga = harga;
@@ -46,6 +47,7 @@ public class TProduct  implements java.io.Serializable {
        this.pict = pict;
        this.condition = condition;
        this.status = status;
+       this.tes = tes;
     }
    
     public String getIdProduct() {
@@ -54,6 +56,20 @@ public class TProduct  implements java.io.Serializable {
     
     public void setIdProduct(String idProduct) {
         this.idProduct = idProduct;
+    }
+    public TGroup getTGroup() {
+        return this.TGroup;
+    }
+    
+    public void setTGroup(TGroup TGroup) {
+        this.TGroup = TGroup;
+    }
+    public TUnit getTUnit() {
+        return this.TUnit;
+    }
+    
+    public void setTUnit(TUnit TUnit) {
+        this.TUnit = TUnit;
     }
     public String getProdName() {
         return this.prodName;
@@ -68,20 +84,6 @@ public class TProduct  implements java.io.Serializable {
     
     public void setProdCode(String prodCode) {
         this.prodCode = prodCode;
-    }
-    public String getGroupid() {
-        return this.groupid;
-    }
-    
-    public void setGroupid(String groupid) {
-        this.groupid = groupid;
-    }
-    public String getUnitid() {
-        return this.unitid;
-    }
-    
-    public void setUnitid(String unitid) {
-        this.unitid = unitid;
     }
     public String getInfo() {
         return this.info;
@@ -131,6 +133,13 @@ public class TProduct  implements java.io.Serializable {
     
     public void setStatus(Integer status) {
         this.status = status;
+    }
+    public String getTes() {
+        return this.tes;
+    }
+    
+    public void setTes(String tes) {
+        this.tes = tes;
     }
 
 

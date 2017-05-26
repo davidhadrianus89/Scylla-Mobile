@@ -111,10 +111,12 @@
                 <div>    
                     <div>
 
-                        <img src="../img/NewLogoBUKIWEB215.png"/> 
+                        <!--                        <img src="../img/NewLogoBUKIWEB215.png"/> -->
+                        <h1 class="logo-name">SM+</h1>
+
 
                     </div>
-<!--                    <h2 style="color:#f7f719;">SCYLLA MOBILE BACK OFFICE</h2>
+                    <!--                    <h2 style="color:#f7f719;">SCYLLA MOBILE BACK OFFICE</h2>
                     --><h3 style="color:#ffffff;">Please Login</h3>
                     <form class="m-t" role="form" method="post" action="login">
 
@@ -182,7 +184,7 @@
                             $(this).val($(this).val().toUpperCase());
                         });
     </script>
-<!--    Mainly scripts -->
+    <!--    Mainly scripts -->
     <script src="../js/jquery-2.1.1.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>

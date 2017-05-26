@@ -71,7 +71,14 @@ public class ProductUnitController {
 
             int counter = upd.checkUnit(unitdesc) + 1;
 
-            TUnit tUnit = new TUnit(String.valueOf(counter), sellerid, unitname, unitdesc, 1);
+            TUnit tUnit = new TUnit();
+            
+            tUnit.setUnitid(String.valueOf(counter));
+            tUnit.setSellerid(sellerid);
+            tUnit.setUnitname(unitname);
+            tUnit.setDescription(unitdesc);
+            tUnit.setStatus(1);
+            
 
             int ret = upd.saveUnit(tUnit);
             String result = "";
@@ -107,7 +114,13 @@ public class ProductUnitController {
 
         try {
             UnitProductDao upd = new UnitProductDaoImp();
-            TUnit tUnit = new TUnit(unitid, sellerid, unitname, unitdesc, 1);
+            TUnit tUnit = new TUnit();
+            
+            tUnit.setUnitid(unitid);
+            tUnit.setSellerid(sellerid);
+            tUnit.setUnitname(unitname);
+            tUnit.setDescription(unitdesc);
+            tUnit.setStatus(1);
 
             int ret = upd.saveUnit(tUnit);
 

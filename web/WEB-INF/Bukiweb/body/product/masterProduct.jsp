@@ -322,7 +322,7 @@
                                                 <td>${i.count}</td>
                                                 <td>${product.prodCode}</td>
                                                 <td>${product.prodName}</td>
-                                                <td>${product.groupid}</td>
+                                                <td>${product.TGroup.groupname}</td>
 
                                                 <c:choose>
                                                     <c:when test="${product.status == '0'}">
@@ -348,7 +348,7 @@
 <!--<td>${product.status}</td>-->
                                                 <td>
                                                     <a data-toggle="modal" onclick="detail('${product.prodCode}', '${product.prodName}',
-                                                                    '${product.groupid}', '${product.unitid}', '${product.info}',
+                                                                    '${product.TGroup.groupid}', '${product.TUnit.unitid}', '${product.info}',
                                                                     '${product.valuta}', '${product.harga}', '${product.pict}',
                                                                     '${product.condition}', '${product.stok}')" 
                                                        class="btn btn-sm btn-outline btn-success" href="#modal-product">
@@ -357,7 +357,7 @@
                                                     </a>
                                                     &nbsp;&nbsp;
                                                     <a data-toggle="modal" onclick="edit('${product.prodCode}', '${product.prodName}',
-                                                                    '${product.groupid}', '${product.unitid}', '${product.info}',
+                                                                    '${product.TGroup.groupid}', '${product.TUnit.unitid}', '${product.info}',
                                                                     '${product.valuta}', '${product.harga}', '${product.pict}',
                                                                     '${product.condition}', '${product.stok}')" class="btn btn-sm btn-outline btn-primary" href="#modal-product">
                                                         <i class="fa fa-paste" ></i> 

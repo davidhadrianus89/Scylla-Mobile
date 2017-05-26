@@ -1,44 +1,48 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 9, 2017 11:10:36 AM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 23, 2017 2:28:05 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.scyllamobile.model.TProduct" optimistic-lock="version" schema="public" table="t_product">
-    <id name="idProduct" type="string">
-      <column length="20" name="id_product"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="prodName" type="string">
-      <column length="50" name="prod_name" not-null="true"/>
-    </property>
-    <property name="prodCode" type="string">
-      <column length="20" name="prod_code" not-null="true"/>
-    </property>
-    <property name="groupid" type="string">
-      <column length="10" name="groupid" not-null="true"/>
-    </property>
-    <property name="unitid" type="string">
-      <column length="10" name="unitid" not-null="true"/>
-    </property>
-    <property name="info" type="string">
-      <column name="info"/>
-    </property>
-    <property name="valuta" type="string">
-      <column length="5" name="valuta"/>
-    </property>
-    <property name="harga" type="java.lang.Long">
-      <column name="harga"/>
-    </property>
-    <property name="stok" type="java.lang.Integer">
-      <column name="stok"/>
-    </property>
-    <property name="pict" type="string">
-      <column name="pict"/>
-    </property>
-    <property name="condition" type="string">
-      <column name="condition"/>
-    </property>
-    <property name="status" type="java.lang.Integer">
-      <column name="status"/>
-    </property>
-  </class>
+    <class name="com.scyllamobile.model.TProduct" table="t_product" schema="public" optimistic-lock="version">
+        <id name="idProduct" type="string">
+            <column name="id_product" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="TGroup" class="com.scyllamobile.model.TGroup" fetch="select">
+            <column name="groupid" length="10" not-null="true" />
+        </many-to-one>
+        <many-to-one name="TUnit" class="com.scyllamobile.model.TUnit" fetch="select">
+            <column name="unitid" length="10" not-null="true" />
+        </many-to-one>
+        <property name="prodName" type="string">
+            <column name="prod_name" length="50" not-null="true" />
+        </property>
+        <property name="prodCode" type="string">
+            <column name="prod_code" length="20" not-null="true" />
+        </property>
+        <property name="info" type="string">
+            <column name="info" />
+        </property>
+        <property name="valuta" type="string">
+            <column name="valuta" length="5" />
+        </property>
+        <property name="harga" type="java.lang.Long">
+            <column name="harga" />
+        </property>
+        <property name="stok" type="java.lang.Integer">
+            <column name="stok" />
+        </property>
+        <property name="pict" type="string">
+            <column name="pict" />
+        </property>
+        <property name="condition" type="string">
+            <column name="condition" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="tes" type="string">
+            <column name="tes" length="1" />
+        </property>
+    </class>
 </hibernate-mapping>

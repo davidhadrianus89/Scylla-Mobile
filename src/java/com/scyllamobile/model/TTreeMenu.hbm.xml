@@ -1,15 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 9, 2017 11:10:36 AM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 23, 2017 2:28:05 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class name="com.scyllamobile.model.TTreeMenu" optimistic-lock="version" schema="public" table="t_tree_menu">
-    <composite-id class="com.scyllamobile.model.TTreeMenuId" name="id">
-      <key-property name="userGroupId" type="string">
-        <column length="10" name="user_group_id"/>
-      </key-property>
-      <key-property name="menuId" type="string">
-        <column length="11" name="menu_id"/>
-      </key-property>
-    </composite-id>
-  </class>
+    <class name="com.scyllamobile.model.TTreeMenu" table="t_tree_menu" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="com.scyllamobile.model.TTreeMenuId">
+            <key-property name="userGroupId" type="string">
+                <column name="user_group_id" length="10" />
+            </key-property>
+            <key-property name="menuId" type="string">
+                <column name="menu_id" length="11" />
+            </key-property>
+        </composite-id>
+    </class>
 </hibernate-mapping>

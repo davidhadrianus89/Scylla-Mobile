@@ -168,16 +168,16 @@ public class ProductController {
                     stream.write(bytes);
                     stream.close();
 
-                    TProduct product = new TProduct(
-                            price, productName, productCode,
-                            productGroup,
-                            productUnit, information,
-                            valuta, Long.valueOf(price),
-                            Integer.valueOf(stok),
-                            imgname,
-                            condition, Integer.valueOf(status));
+//                    TProduct product = new TProduct(
+//                            price, productName, productCode,
+//                            productGroup,
+//                            productUnit, information,
+//                            valuta, Long.valueOf(price),
+//                            Integer.valueOf(stok),
+//                            imgname,
+//                            condition, Integer.valueOf(status));
 
-                    pd.saveProduct(product);
+//                    pd.saveProduct(product);
 //
 //                    System.out.println("Server File Location="
 //                            + serverFile.getAbsolutePath());

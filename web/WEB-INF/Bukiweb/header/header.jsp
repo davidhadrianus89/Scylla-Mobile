@@ -18,10 +18,6 @@
 
     <!-- Gritter -->
     <link href="/../js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
-    <!--    <link href="../css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
-        <link href="../css/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
-        <link href="../css/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">-->
     <link href="/../css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="/../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
 
@@ -34,61 +30,61 @@
         .jqsfield { color: white;font: 10px arial, san serif;text-align: left;}
     </style>
     <script>
-//        window.history.forward();
-        function noBack() {
-//            location.reload(true);
-//            window.onbeforeunload = function () {
-//                alert("You Can't Back Page");
-//            };
-        }
-
-//        End off tab mode
-
-        var message = "Sorry !!! Right Click is Disabled";
-
-        function clickIE4() {
-
-            if (event.button == 2) {
-
-                alert(message);
-
-                return false;
-
-            }
-
-        }
-
-        function clickNS4(e) {
-
-            if (document.layers || document.getElementById && !document.all) {
-
-                if (e.which == 2 || e.which == 3) {
-
-                    alert(message);
-
-                    return false;
-
-                }
-
-            }
-
-        }
-
-        if (document.layers) {
-
-            document.captureEvents(Event.MOUSEDOWN);
-
-            document.onmousedown = clickNS4;
-
-        }
-
-        else if (document.all && !document.getElementById) {
-
-            document.onmousedown = clickIE4;
-
-        }
-
-        document.oncontextmenu = new Function("return false");
+////        window.history.forward();
+//        function noBack() {
+////            location.reload(true);
+////            window.onbeforeunload = function () {
+////                alert("You Can't Back Page");
+////            };
+//        }
+//
+////        End off tab mode
+//
+//        var message = "Sorry !!! Right Click is Disabled";
+//
+//        function clickIE4() {
+//
+//            if (event.button == 2) {
+//
+//                alert(message);
+//
+//                return false;
+//
+//            }
+//
+//        }
+//
+//        function clickNS4(e) {
+//
+//            if (document.layers || document.getElementById && !document.all) {
+//
+//                if (e.which == 2 || e.which == 3) {
+//
+//                    alert(message);
+//
+//                    return false;
+//
+//                }
+//
+//            }
+//
+//        }
+//
+//        if (document.layers) {
+//
+//            document.captureEvents(Event.MOUSEDOWN);
+//
+//            document.onmousedown = clickNS4;
+//
+//        }
+//
+//        else if (document.all && !document.getElementById) {
+//
+//            document.onmousedown = clickIE4;
+//
+//        }
+//
+//        document.oncontextmenu = new Function("return false");
     </script>
     <script>
         var param;
@@ -125,12 +121,6 @@
                     a = li_ret[0];
 //                    alert('a : ' + a);
                     if (a != 0) {
-//                        alert('false')
-//                        var log = "";
-//                        log = log + "<label >Message :" + li_ret + " </label>";
-//                        log = log + "<div class=\"form-group\"><label>User Name</label> <input name=\"username\" value=\"" + usrid.replace("userid=", "") + "\" type=\"text\" placeholder=\"Enter your user name\" class=\"form-control\" maxlength=\"10\" id=\"userbk\" readonly=\"\"></div>";
-//                        log = log + "<div class=\"form-group\"><label>Password</label> <input name=\"password\" type=\"password\" placeholder=\"Enter your password\" class=\"form-control\" maxlength=\"10\" id=\"password\"></div>";
-//                        document.getElementById("died").innerHTML = log;
                         document.getElementById("userbk").value = usrid.replace("userid=", "");
 //                        document.getElementById("password").innerHTML = dita[3];
 //                        $('#myModal').modal('show');
@@ -239,26 +229,6 @@
         }
 
         function loadBodyPost(URL) {
-//            alert(URL);
-
-//            alert($("form").);
-//            alert($("form").serialize());
-//            if($("form").serialize() == null){
-//                
-//            }
-//            if (URL === 'TRDEL1') {
-//                if (confirm("Are you sure delete this tree ?") === true) {
-////                    return true;
-//                } else {
-//                    return false;
-//                }
-//            }else if(URL === 'NDDEL1'){
-//                if (confirm("Are you sure delete this node ?") === true) {
-////                    return true;
-//                } else {
-//                    return false;
-//                }
-//            }
 //            alert(URL);
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {

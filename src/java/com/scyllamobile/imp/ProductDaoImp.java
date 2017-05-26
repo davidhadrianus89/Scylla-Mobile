@@ -32,7 +32,14 @@ public class ProductDaoImp implements ProductDao{
     @Override
     public List listProduct() {
         session.clear();
-        List group = session.createQuery("from TProduct order by idProduct").list();
+        
+        String hql = "from TProduct e join fetch e.TGroup g"
+                    + " join fetch e.TUnit u"
+                    + " order by e.idProduct";
+        
+        List group = session.createQuery(hql).list();
+        
+        session.close();
 
         return group;
     }
