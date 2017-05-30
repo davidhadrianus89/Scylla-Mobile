@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 30, 2017 1:15:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.scyllamobile.modelo.Mblfbotol" table="MBLFBOTOL" schema="USCYLLA0">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned"></generator>
+        </id>
+        <property name="mtgl" type="string">
+            <column name="MTGL" length="8" />
+        </property>
+        <property name="mslsno" type="string">
+            <column name="MSLSNO" length="20" />
+        </property>
+        <property name="kodebtl" type="string">
+            <column name="KODEBTL" length="5" />
+        </property>
+        <property name="namabtl" type="string">
+            <column name="NAMABTL" length="30" />
+        </property>
+        <property name="tipe" type="string">
+            <column name="TIPE" length="2" />
+        </property>
+        <property name="hargabtl" type="big_decimal">
+            <column name="HARGABTL" precision="22" scale="0" />
+        </property>
+        <property name="suppno" type="string">
+            <column name="SUPPNO" length="6" />
+        </property>
+        <property name="begqty" type="big_decimal">
+            <column name="BEGQTY" precision="22" scale="0" />
+        </property>
+        <property name="inqty" type="big_decimal">
+            <column name="INQTY" precision="22" scale="0" />
+        </property>
+        <property name="outqty" type="big_decimal">
+            <column name="OUTQTY" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

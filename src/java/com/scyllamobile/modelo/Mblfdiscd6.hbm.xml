@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 30, 2017 1:15:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.scyllamobile.modelo.Mblfdiscd6" table="MBLFDISCD6" schema="USCYLLA0">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned"></generator>
+        </id>
+        <property name="mtgl" type="string">
+            <column name="MTGL" length="8" />
+        </property>
+        <property name="mslsno" type="string">
+            <column name="MSLSNO" length="20" />
+        </property>
+        <property name="kode" type="string">
+            <column name="KODE" length="10" />
+        </property>
+        <property name="pcode" type="string">
+            <column name="PCODE" length="15" />
+        </property>
+        <property name="xno" type="big_decimal">
+            <column name="XNO" precision="22" scale="0" />
+        </property>
+        <property name="minqty" type="big_decimal">
+            <column name="MINQTY" precision="22" scale="0" />
+        </property>
+        <property name="maxqty" type="big_decimal">
+            <column name="MAXQTY" precision="22" scale="0" />
+        </property>
+        <property name="xminqty" type="string">
+            <column name="XMINQTY" length="14" />
+        </property>
+        <property name="xmaxqty" type="string">
+            <column name="XMAXQTY" length="14" />
+        </property>
+        <property name="kpercent" type="big_decimal">
+            <column name="KPERCENT" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 30, 2017 1:15:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.scyllamobile.modelo.Mblfarretur" table="MBLFARRETUR" schema="USCYLLA0">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned"></generator>
+        </id>
+        <property name="mtgl" type="string">
+            <column name="MTGL" length="8" />
+        </property>
+        <property name="mslsno" type="string">
+            <column name="MSLSNO" length="20" />
+        </property>
+        <property name="invno" type="string">
+            <column name="INVNO" length="8" />
+        </property>
+        <property name="slsno" type="string">
+            <column name="SLSNO" length="15" />
+        </property>
+        <property name="custno" type="string">
+            <column name="CUSTNO" length="15" />
+        </property>
+        <property name="invdate" type="string">
+            <column name="INVDATE" length="10" />
+        </property>
+        <property name="invamount" type="big_decimal">
+            <column name="INVAMOUNT" precision="22" scale="0" />
+        </property>
+        <property name="retamt" type="big_decimal">
+            <column name="RETAMT" precision="22" scale="0" />
+        </property>
+        <property name="remark" type="string">
+            <column name="REMARK" length="30" />
+        </property>
+        <property name="slsname" type="string">
+            <column name="SLSNAME" length="25" />
+        </property>
+        <property name="flag" type="string">
+            <column name="FLAG" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

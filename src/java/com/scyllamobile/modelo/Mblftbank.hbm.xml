@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 30, 2017 1:15:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.scyllamobile.modelo.Mblftbank" table="MBLFTBANK" schema="USCYLLA0">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned"></generator>
+        </id>
+        <property name="mtgl" type="string">
+            <column name="MTGL" length="8" />
+        </property>
+        <property name="mslsno" type="string">
+            <column name="MSLSNO" length="20" />
+        </property>
+        <property name="bankNo" type="string">
+            <column name="BANK_NO" length="2" />
+        </property>
+        <property name="bankName" type="string">
+            <column name="BANK_NAME" length="25" />
+        </property>
+    </class>
+</hibernate-mapping>

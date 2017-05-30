@@ -36,7 +36,7 @@
                 
                 <br>
                 
-                <a href="/bscms/login" class="text-center btn btn-primary m-t">LOGIN</a>
+                <a href="/smbackend/login" class="text-center btn btn-primary m-t">LOGIN</a>
             </div>
         </div>
 

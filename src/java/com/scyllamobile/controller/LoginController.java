@@ -59,7 +59,7 @@ public class LoginController {
 
         //defUrl = pc.prop();
 //        defUrl = " http://localhost:8080/BSCMS_Server/";
-        defUrl = " http://localhost:8084/bscms/";
+        defUrl = " http://localhost:8084/smbackend/";
 
         System.out.println("URL : " + defUrl);
     }

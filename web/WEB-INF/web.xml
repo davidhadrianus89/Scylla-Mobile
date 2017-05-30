@@ -14,7 +14,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>/bscms/*</url-pattern>
+        <url-pattern>/smbackend/*</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>kapatcha</servlet-name>

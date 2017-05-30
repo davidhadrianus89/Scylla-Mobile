@@ -19,7 +19,7 @@ public class PropertiesController {
         String defUrl;
         Properties prop = new Properties();
 
-        String propFileName = "/id/co/bukopin/bscms/conf/url.properties";
+        String propFileName = "/com/scyllamobile/conf/url.properties";
         InputStream inputStream = getClass().getResourceAsStream(propFileName);
         try {
             prop.load(inputStream);

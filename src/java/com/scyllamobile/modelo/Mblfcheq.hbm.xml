@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 30, 2017 1:15:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.scyllamobile.modelo.Mblfcheq" table="MBLFCHEQ" schema="USCYLLA0">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned"></generator>
+        </id>
+        <property name="mtgl" type="string">
+            <column name="MTGL" length="8" />
+        </property>
+        <property name="mslsno" type="string">
+            <column name="MSLSNO" length="20" />
+        </property>
+        <property name="cekno" type="string">
+            <column name="CEKNO" length="15" />
+        </property>
+        <property name="custno" type="string">
+            <column name="CUSTNO" length="15" />
+        </property>
+        <property name="bank" type="string">
+            <column name="BANK" length="25" />
+        </property>
+        <property name="tglcek" type="string">
+            <column name="TGLCEK" length="10" />
+        </property>
+        <property name="tgljt" type="string">
+            <column name="TGLJT" length="10" />
+        </property>
+        <property name="nilaicek" type="big_decimal">
+            <column name="NILAICEK" precision="22" scale="0" />
+        </property>
+        <property name="nilaibyr" type="big_decimal">
+            <column name="NILAIBYR" precision="22" scale="0" />
+        </property>
+        <property name="flag" type="string">
+            <column name="FLAG" length="1" />
+        </property>
+        <property name="flagscy" type="string">
+            <column name="FLAGSCY" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

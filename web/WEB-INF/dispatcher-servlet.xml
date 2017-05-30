@@ -15,6 +15,7 @@
     <context:annotation-config />
     <context:component-scan base-package="com.scyllamobile.controller1" />
     <context:component-scan base-package="com.scyllamobile.controller" />
+    <context:component-scan base-package="com.scyllamobile.api" />
     <mvc:annotation-driven />
  
     <bean id="viewResolver"

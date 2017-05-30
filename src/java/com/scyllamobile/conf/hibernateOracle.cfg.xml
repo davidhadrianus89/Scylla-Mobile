@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+    <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+    <property name="hibernate.connection.url">jdbc:oracle:thin:@10.10.10.120:1521:DBSCYLLA</property>
+    <property name="hibernate.connection.username">uscylla0</property>
+    <property name="hibernate.connection.password">jcscyttirra</property>
+    <mapping resource="com/scyllamobile/modelo/Mblfcustmst.hbm.xml"/>
+    <mapping resource="com/scyllamobile/modelo/Mblfdiscd5.hbm.xml"/>
+    <mapping resource="com/scyllamobile/modelo/Mblfmaster.hbm.xml"/>
+    <mapping resource="com/scyllamobile/modelo/Mblfcheq.hbm.xml"/>
+    <mapping resource="com/scyllamobile/modelo/Mblfbotol.hbm.xml"/>
+    <mapping resource="com/scyllamobile/modelo/Mblfarcndn.hbm.xml"/>
+    <mapping resource="com/scyllamobile/modelo/Mblfbrand.hbm.xml"/>
+    <mapping resource="com/scyllamobile/modelo/Mblfarretur.hbm.xml"/>
+    <mapping resource="com/scyllamobile/modelo/Mblfparam.hbm.xml"/>
+    <mapping resource="com/scyllamobile/modelo/Mblftbank.hbm.xml"/>
+    <mapping resource="com/scyllamobile/modelo/Mblfdiscd6.hbm.xml"/>
+    <mapping resource="com/scyllamobile/modelo/Mblfaktivitas.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
