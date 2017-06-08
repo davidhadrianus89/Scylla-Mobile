@@ -76,12 +76,12 @@
                                 <table class="table table-striped table-bordered table-hover " id="tabel1" >
                                     <thead>
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Username</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Group</th>
-                                            <th>Status Active</th>
+                                            <th>Code</th>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th>Role</th>
+                                            <th>Last Login</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                             
                                         </tr>
@@ -89,14 +89,14 @@
                                     <tbody id="tbody">
                                         <c:forEach var="user" items="${listUser}" varStatus="i">            
                                         <tr>
-                                            <td>${i.count}</td>
-                                            <td>${user.userId}</td>
-                                            <td>${user.email}</td>
-                                            <td>${user.telepon}</td>
-                                            <td>${user.userGroup}</td>
-                                            <td>${user.statusLogin}</td>
-                                            <td><button onclick="update('${user.userId}')"><i class="fa fa-edit" ></i></button>
-                                                &nbsp;&nbsp;<button onclick="hapus('${user.userId}')"><i class="fa fa-trash-o" ></i></button>    </td>
+                                            <td>${user.id}</td>
+                                            <td>${user.fullName}</td>
+                                            <td>${user.address}</td>
+                                            <td>${user.roles.name}</td>
+                                            <td>${user.lastLogin}</td>
+                                            <td>${user.status}</td>
+                                            <td><button onclick="update('${user.id}')"><i class="fa fa-edit" ></i></button>
+                                                &nbsp;&nbsp;<button onclick="hapus('${user.id}')"><i class="fa fa-trash-o" ></i></button>    </td>
 
                                         </tr>
                                         </c:forEach>

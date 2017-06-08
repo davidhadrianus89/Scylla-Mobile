@@ -7,6 +7,10 @@ package com.scyllamobile.imp;
 
 import com.scyllamobile.util.HibernateUtilSQL;
 import com.scyllamobile.dao.LoginDao;
+import com.scyllamobile.model.TUser;
+import com.scyllamobile.model.Users;
+import com.scyllamobile.util.HibernateUtilOracle;
+import java.util.List;
 import org.hibernate.Session;
 
 /**
@@ -18,7 +22,7 @@ public class LoginDaoImp implements LoginDao {
     public Session session = null;
 
     public LoginDaoImp() {
-        session = HibernateUtilSQL.getSessionFactory().openSession();
+        session = HibernateUtilOracle.getSessionFactory().openSession();
     //    session.beginTransaction();
     }
 
@@ -29,13 +33,13 @@ public class LoginDaoImp implements LoginDao {
         try{
             Integer count;
             session.clear();
-            count = Integer.valueOf(session.createQuery("Select count(1) from TUser where userId = '" + username + "'").list().get(0).toString());
+            count = Integer.valueOf(session.createQuery("Select count(1) from Users where email = '" + username + "'").list().get(0).toString());
             System.out.println("Masuk sini 1 : "+count);
             if (count > 0) {
-                count = Integer.valueOf(session.createQuery("Select count(1) from TUser where userId = '" + username + "' and userPassword = '" + password + "' ").list().get(0).toString());
+                count = Integer.valueOf(session.createQuery("Select count(1) from Users where email = '" + username + "' and passwordHash = '" + password + "' ").list().get(0).toString());
                 System.out.println("Masuk Sini 2 : "+count);
                 if (count > 0) {
-                    count = Integer.valueOf(session.createQuery("Select count(1) from TUser where userId = '" + username + "' and statusActive ='1'").list().get(0).toString());
+                    count = Integer.valueOf(session.createQuery("Select count(1) from Users where email = '" + username + "' and status =1").list().get(0).toString());
                      if (count > 0) {
                          result = 0;
                      }else{
@@ -49,7 +53,7 @@ public class LoginDaoImp implements LoginDao {
             }
         }catch(Exception e){
             result = 9;
-            System.out.println("Error Login DI TUser nih : " + e.getMessage());
+            System.out.println("Error Login Di Users nih : " + e.getMessage());
         }
         return result;
     }
@@ -57,5 +61,31 @@ public class LoginDaoImp implements LoginDao {
     @Override
     public void getLogout(String user) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Users dataUser(String email) {
+        
+        System.out.println("user ID :" + email);
+        
+        Users user = null;
+        try {
+            
+            List<Users> list = session.createQuery("from Users where email = '"+email + "'").list(); // here should be something else than list()
+            return (list.isEmpty() ? null : list.get(0));
+            
+//            user = (Users) session.get(Users.class, email);
+        } catch (Exception e) {
+            System.err.println("User Dao Imp : " + e.getMessage());
+        }
+        return user;
+    }
+    
+    public static void main(String[] args) {
+        LoginDaoImp imp = new LoginDaoImp();
+        
+        Users u = imp.dataUser("admin@yahoo.com");
+        
+        System.out.println("Full name " + u.getFullName());
     }
 }

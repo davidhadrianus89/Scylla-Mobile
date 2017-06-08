@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 8, 2017 5:46:55 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.scyllamobile.model.Menuuser" table="MENUUSER" schema="USCYLLA0" optimistic-lock="version">
+        <id name="menuId" type="string">
+            <column name="MENU_ID" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="menuName" type="string">
+            <column name="MENU_NAME" length="100" not-null="true" />
+        </property>
+        <property name="menuAddress" type="string">
+            <column name="MENU_ADDRESS" length="100" not-null="true" />
+        </property>
+        <property name="menuParent" type="string">
+            <column name="MENU_PARENT" length="10" />
+        </property>
+        <set name="menutrees" table="MENUTREE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MENU_ID" length="10" not-null="true" />
+            </key>
+            <one-to-many class="com.scyllamobile.model.Menutree" />
+        </set>
+    </class>
+</hibernate-mapping>

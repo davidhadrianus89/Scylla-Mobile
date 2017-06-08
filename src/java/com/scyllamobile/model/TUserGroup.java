@@ -1,5 +1,5 @@
 package com.scyllamobile.model;
-// Generated May 23, 2017 2:27:59 PM by Hibernate Tools 4.3.1
+// Generated Jun 8, 2017 5:46:44 AM by Hibernate Tools 4.3.1
 
 
 

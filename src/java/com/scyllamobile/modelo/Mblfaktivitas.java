@@ -1,5 +1,5 @@
 package com.scyllamobile.modelo;
-// Generated May 30, 2017 1:15:21 PM by Hibernate Tools 4.3.1
+// Generated Jun 8, 2017 5:46:44 AM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;

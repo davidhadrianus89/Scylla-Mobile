@@ -2,15 +2,15 @@
 <!DOCTYPE html>
 <html>
     <c:import url="header/header.jsp"/>
-    <!--<script type="text/javascript" src="../js/MaskedPassword.js"></script>-->
+    <script type="text/javascript" src="../js/MaskedPassword.js"></script>
     <body onload="noBack();"
-          onpageshow="if (event.persisted) noBack();" onunload="" class="fixed-nav pace-done fixed-sidebar">
-        <div class="pace  pace-inactive">
+          onpageshow="if (event.persisted) noBack();" onunload="" class="fixed-nav pace-done fixed-sidebar skin-1">
+<!--        <div class="pace  pace-inactive">
             <div class="" dpace-progressata-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
                 <div class="pace-progress-inner"></div>
             </div>
             <div class="pace-activity"></div>              
-        </div>
+        </div>-->
         <div id="wrapper">
             <nav class="navbar-default navbar-static-side" role="navigation">
                 <div class="sidebar-collapse">
@@ -22,9 +22,9 @@
 
                                 </span>
 
-                                <span class="clear"> 
+                                <span class="clear" style="color: #ffffff"> 
                                     <span class="block m-t-xs"> <strong class="font-bold"> ${profil[0]} </strong> </span>
-                                    <strong class="text-muted text-xs block"> ${profil[1]} </strong>
+                                    <strong class="text-xs block"> ${profil[1]} </strong>
                                     <input type="hidden" id="usercek" value="${profil[0]}"/>
                                 </span>
 
@@ -37,7 +37,7 @@
                             <a href="home" id="a"><i class="fa fa-th-large"></i> <span class="nav-label">DASHBOARD</span></a>
                         </li>  
 
-                        <p id="sayangdita">
+                        <p id="mymenu">
                             ${menuku}
 
                         </p>
@@ -61,12 +61,7 @@
                                 <a href="#" style="color: #ffffff;">
                                     <i class="fa fa-question-circle"></i> <span>Help</span>
                                 </a>
-                            </li>
-                            <!--li>
-                                <a href="#" style="color: #ffffff;">
-                                    <i class="fa fa-pencil-square-o"></i> <span>Change Password</span>
-                                </a>
-                            </li -->              
+                            </li>             
                             <li>
                                 <a href="logout?userid=${logout}" style="color: #ffffff;">
                                     <i class="fa fa-sign-out"></i> <span>Log Out</span>
@@ -82,20 +77,17 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="wrapper wrapper-content">
-                            <!--<div class="row" id="test1">-->
                             <div id="wait" style="display:none;" class="cssload-loader" >Now Loading...!</div>
                             <div id="test1">
                                 <c:import url="${url}"/>
                             </div>
-                            <%----%>
-                            <!--</div>-->
                         </div>
-                        <div class="footer fixed" style="background-color:#02923d;">
+                        <div id="foot" class="footer fixed" style="background-color:#445474;">
                             <div class="pull-right">
-                                <strong style="color: #ffffff;">Back Office</strong>
+                                <strong style="color: #ffffff;">Scylla Mobile Back Office</strong>
                             </div>
                             <div>
-                                <strong style="color: #ffffff;">Copyright Scylla Mobile</strong>
+                                <strong style="color: #ffffff;">Copyright &copy; 2017</strong>
                             </div>
                         </div>
                     </div>
@@ -105,7 +97,36 @@
         </div>
 
         <c:import url="footer/footer.jsp"/>
-
+        <div class="theme-config">
+            <div class="theme-config-box">
+                <div class="spin-icon">
+                    <i class="fa fa-cogs fa-spin"></i>
+                </div>
+                <div class="skin-setttings">
+                    <div class="setings-item default-skin">
+                        <span class="skin-name ">
+                            <a href="#" class="s-skin-0">
+                                Default
+                            </a>
+                        </span>
+                    </div>
+                    <div class="setings-item blue-skin">
+                        <span class="skin-name ">
+                            <a href="#" class="s-skin-1">
+                                Blue light
+                            </a>
+                        </span>
+                    </div>
+                    <div class="setings-item yellow-skin">
+                        <span class="skin-name ">
+                            <a href="#" class="s-skin-3">
+                                Yellow/Purple
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <script>
@@ -196,8 +217,6 @@
                     if (localStorageSupport) {
                         localStorage.setItem("fixedfooter", 'off');
                     }
-
-
                     if (localStorageSupport) {
                         localStorage.setItem("boxedlayout", 'on');
                     }
@@ -243,6 +262,7 @@
                 $("body").removeClass("skin-1");
                 $("body").removeClass("skin-2");
                 $("body").removeClass("skin-3");
+                $("#foot").attr("style", "background-color:#02923d;");
             });
 
             // Blue skin
@@ -250,20 +270,23 @@
                 $("body").removeClass("skin-2");
                 $("body").removeClass("skin-3");
                 $("body").addClass("skin-1");
+                $("#foot").attr("style", "background-color:#445474;");
             });
 
-            // Inspinia ultra skin
-            $('.s-skin-2').click(function () {
-                $("body").removeClass("skin-1");
-                $("body").removeClass("skin-3");
-                $("body").addClass("skin-2");
-            });
+//            // Inspinia ultra skin
+//            $('.s-skin-2').click(function () {
+//                $("body").removeClass("skin-1");
+//                $("body").removeClass("skin-3");
+//                $("body").addClass("skin-2");
+//                $("#foot").attr("style", "background-color:#2f4050;");
+//            });
 
             // Yellow skin
             $('.s-skin-3').click(function () {
                 $("body").removeClass("skin-1");
                 $("body").removeClass("skin-2");
                 $("body").addClass("skin-3");
+                $("#foot").attr("style", "background-color:#3e2c42;");
             });
 
             if (localStorageSupport) {
@@ -273,20 +296,20 @@
                 var boxedlayout = localStorage.getItem("boxedlayout");
                 var fixedfooter = localStorage.getItem("fixedfooter");
 
-                if (collapse == 'on') {
-                    $('#collapsemenu').prop('checked', 'checked')
+                if (collapse === 'on') {
+                    $('#collapsemenu').prop('checked', 'checked');
                 }
-                if (fixedsidebar == 'on') {
-                    $('#fixedsidebar').prop('checked', 'checked')
+                if (fixedsidebar === 'on') {
+                    $('#fixedsidebar').prop('checked', 'checked');
                 }
-                if (fixednavbar == 'on') {
-                    $('#fixednavbar').prop('checked', 'checked')
+                if (fixednavbar === 'on') {
+                    $('#fixednavbar').prop('checked', 'checked');
                 }
-                if (boxedlayout == 'on') {
-                    $('#boxedlayout').prop('checked', 'checked')
+                if (boxedlayout === 'on') {
+                    $('#boxedlayout').prop('checked', 'checked');
                 }
-                if (fixedfooter == 'on') {
-                    $('#fixedfooter').prop('checked', 'checked')
+                if (fixedfooter === 'on') {
+                    $('#fixedfooter').prop('checked', 'checked');
                 }
             }
         </script>
@@ -312,14 +335,12 @@
                     <br/>
                     <div class="form-group">
                         <div class="input-group m-b">
-                            <!--<label>User Name</label> -->
                             <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                            <input name="username" type="text" placeholder="Enter your user name" class="form-control" maxlength="10" id="username" readonly="yes">
+                            <input name="username" value=${profil[0]} type="text" placeholder="Enter your user name" class="form-control" maxlength="10" id="username" readonly="yes">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group m-b">
-                            <!--<label>Password</label>--> 
                             <span class="input-group-addon"><span class="fa fa-lock"></span></span>
                             <input name="password" type="text" placeholder="Enter your password" class="form-control password" maxlength="10" id="password">
                         </div>
@@ -336,25 +357,25 @@
                 new MaskedPassword(document.getElementById("password"), '\u25CF');
 
                 function loginSession() {
-                    //                    $('#myModal').modal('hide');
                     $("#wait").css("display", "block");
                     $('#myModalCoba').modal({backdrop: 'static', keyboard: false, show: true});
                     var xhttp = new XMLHttpRequest();
                     xhttp.onreadystatechange = function () {
-                        if (xhttp.readyState == 4 && xhttp.status == 200) {
-                            //                            alert('masuk');
-                            //                            alert(xhttp.responseText);
-                            if (xhttp.responseText == '0') {
-                                //                                alert('Sukses');
-                                //sukses
+                        if (xhttp.readyState === 4 && xhttp.status === 200) {
+                            if (xhttp.responseText === '0') {
                                 $('#myModal').modal('hide');
-                            } else {
-                                document.getElementById("msg_err").innerHTML = xhttp.responseText;
+                            } else if (xhttp.responseText === '1') {
+                                document.getElementById("msg_err").innerHTML = 'User not found';
+                            } else if (xhttp.responseText === '2') {
+                                document.getElementById("msg_err").innerHTML = 'Incorrect password';
+                            } else if (xhttp.responseText === '3') {
+                                document.getElementById("msg_err").innerHTML = 'User not active. Please call Administrator';
+                            } else if (xhttp.responseText === '9') {
+                                document.getElementById("msg_err").innerHTML = 'Internal Server Error. Please call Administrator';
                             }
                             document.getElementById("password").value = "";
                             $("#wait").css("display", "none");
                             $('#myModalCoba').modal('hide');
-                            //                            document.getElementById("msg").innerHTML = xhttp.responseText;
                         }
                         else {
                             //                    $('#myModal').modal('show');
@@ -387,3 +408,4 @@
         e.preventDefault();
     });
 </script>-->
+

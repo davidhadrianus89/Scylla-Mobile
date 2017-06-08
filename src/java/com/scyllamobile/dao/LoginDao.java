@@ -5,6 +5,8 @@
  */
 package com.scyllamobile.dao;
 
+import com.scyllamobile.model.Users;
+
 /**
  *
  * @author DPTI
@@ -14,4 +16,6 @@ public interface LoginDao {
     public int getLogin(String username, String password);
 
     public void getLogout(String user);
+    
+    public Users dataUser(String email);
 }

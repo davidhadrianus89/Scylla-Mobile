@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 8, 2017 5:46:55 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.scyllamobile.model.Devices" table="DEVICES" schema="USCYLLA0">
+        <id name="id" type="big_decimal">
+            <column name="ID" scale="0" />
+            <generator class="assigned"></generator>
+        </id>
+        <many-to-one name="users" class="com.scyllamobile.model.Users" fetch="select">
+            <column name="USER_ID" scale="0" />
+        </many-to-one>
+        <property name="code" type="string">
+            <column name="CODE" unique="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="macAddress" type="string">
+            <column name="MAC_ADDRESS" />
+        </property>
+        <property name="status" type="java.lang.Long">
+            <column name="STATUS" precision="10" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

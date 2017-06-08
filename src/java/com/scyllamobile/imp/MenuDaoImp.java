@@ -6,7 +6,7 @@
 package com.scyllamobile.imp;
 
 import com.scyllamobile.dao.MenuDao;
-import com.scyllamobile.util.HibernateUtilSQL;
+import com.scyllamobile.util.HibernateUtilOracle;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,7 +21,7 @@ public class MenuDaoImp implements MenuDao {
     public Session session = null;
 
     public MenuDaoImp() {
-        sessionFactory = HibernateUtilSQL.getSessionFactory();
+        sessionFactory = HibernateUtilOracle.getSessionFactory();
         session = sessionFactory.openSession();
         
     }
@@ -36,9 +36,15 @@ public class MenuDaoImp implements MenuDao {
 
     @Override
     public List listMenu(String userId, String groupId) {
-        List user = session.createQuery("Select um from TTreeMenu tm, TUserMenu um, TUser u "
-                + "where tm.id.menuId = um.menuId and tm.id.userGroupId = u.userGroup "
-                + "and  u.userGroup = '" + groupId + "' and u.userId = '"+ userId +"' order by tm.id.menuId").list();
+        
+//        "Select um from TTreeMenu tm, TUserMenu um, TUser u "
+//                + "where tm.id.menuId = um.menuId and tm.id.userGroupId = u.userGroup "
+//                + "and  u.userGroup = '" + groupId + "' and u.userId = '"+ userId +"' order by tm.id.menuId"
+        
+        String hql="from Menuuser mu join fetch mu.menutrees mt where mt.id.roleId ='" + groupId +"' order by mu.menuId";
+
+        
+        List user = session.createQuery(hql).list();
 
         return user;
     }

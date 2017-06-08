@@ -8,11 +8,6 @@
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">positive</property>
     <mapping resource="com/scyllamobile/model/TUserGroup.hbm.xml"/>
-    <mapping resource="com/scyllamobile/model/TUnit.hbm.xml"/>
-    <mapping resource="com/scyllamobile/model/TUserMenu.hbm.xml"/>
-    <mapping resource="com/scyllamobile/model/TGroup.hbm.xml"/>
-    <mapping resource="com/scyllamobile/model/TProduct.hbm.xml"/>
     <mapping resource="com/scyllamobile/model/TUser.hbm.xml"/>
-    <mapping resource="com/scyllamobile/model/TTreeMenu.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

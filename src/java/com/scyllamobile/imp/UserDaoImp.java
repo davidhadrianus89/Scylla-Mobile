@@ -7,10 +7,8 @@ package com.scyllamobile.imp;
 
 import com.scyllamobile.dao.UserDao;
 import com.scyllamobile.model.TUser;
-import com.scyllamobile.model.TUserGroup;
-import com.scyllamobile.util.HibernateUtilSQL;
+import com.scyllamobile.util.HibernateUtilOracle;
 import java.util.List;
-import org.apache.catalina.startup.Catalina;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,7 +25,7 @@ public class UserDaoImp implements UserDao {
     public Transaction trx = null;
 
     public UserDaoImp() {
-        sessionFactory = HibernateUtilSQL.getSessionFactory();
+        sessionFactory = HibernateUtilOracle.getSessionFactory();
         session = sessionFactory.openSession();
     }
 
@@ -50,7 +48,7 @@ public class UserDaoImp implements UserDao {
     @Override
     public List getAllUser() {
         session.clear();
-        List user = session.createQuery("from TUser").list();
+        List user = session.createQuery("from Users u join fetch u.roles r").list();
         return user;
     }
 
@@ -74,6 +72,9 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public TUser dataUser(String userId) {
+        
+        System.out.println("user ID :" + userId);
+        
         TUser user = null;
         try {
             user = (TUser) session.get(TUser.class, userId);

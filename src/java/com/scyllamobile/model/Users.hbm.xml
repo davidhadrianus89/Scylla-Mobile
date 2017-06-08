@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 8, 2017 5:46:55 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.scyllamobile.model.Users" table="USERS" schema="USCYLLA0">
+        <id name="id" type="big_decimal">
+            <column name="ID" scale="0" />
+            <generator class="assigned"></generator>
+        </id>
+        <many-to-one name="roles" class="com.scyllamobile.model.Roles" fetch="select">
+            <column name="ROLE_ID" />
+        </many-to-one>
+        <property name="address" type="string">
+            <column name="ADDRESS" />
+        </property>
+        <property name="code" type="string">
+            <column name="CODE" unique="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" />
+        </property>
+        <property name="fullName" type="string">
+            <column name="FULL_NAME" />
+        </property>
+        <property name="lastLogin" type="serializable">
+            <column name="LAST_LOGIN" />
+        </property>
+        <property name="passwordHash" type="string">
+            <column name="PASSWORD_HASH" />
+        </property>
+        <property name="status" type="java.lang.Long">
+            <column name="STATUS" precision="10" scale="0" />
+        </property>
+        <set name="deviceses" table="DEVICES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="USER_ID" scale="0" />
+            </key>
+            <one-to-many class="com.scyllamobile.model.Devices" />
+        </set>
+    </class>
+</hibernate-mapping>

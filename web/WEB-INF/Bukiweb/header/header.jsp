@@ -1,51 +1,41 @@
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Welcome to Scylla Mobile Back Office</title>
-
-
-
+    <title>Welcome to Scylla Mobile Backend</title>
     <link href="/../css/bootstrap.min.css" rel="stylesheet">
     <link href="/../font-awesome/css/font-awesome.css" rel="stylesheet">
-
     <!-- Toastr style -->
     <link href="/../css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
     <!--Shortcut Icon-->
     <link rel="shortcut icon" href="/../img/miniLogoBukopin.png">
-
     <!-- Gritter -->
     <link href="/../js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
     <link href="/../css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="/../css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
-
     <link href="/../css/animate.css" rel="stylesheet">
     <link href="/../css/style.css" rel="stylesheet">
     <link href="/../css/loaderCoba.css" rel="stylesheet">
     <script src="/../js/jquery/jquery.min.js"></script>
     <style type="text/css">
+        body{ padding-right: 0 !important}
         .jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}
         .jqsfield { color: white;font: 10px arial, san serif;text-align: left;}
     </style>
     <script>
-////        window.history.forward();
-//        function noBack() {
-////            location.reload(true);
-////            window.onbeforeunload = function () {
-////                alert("You Can't Back Page");
-////            };
-//        }
-//
-////        End off tab mode
-//
+//        window.history.forward();
+        function noBack() {
+//            location.reload(true);
+            window.onbeforeunload = function () {
+//                alert("You Can't Back Page");
+            };
+        }
+
+//        End off tab mode
+
 //        var message = "Sorry !!! Right Click is Disabled";
 //
 //        function clickIE4() {
-//
 //            if (event.button == 2) {
-//
 //                alert(message);
 //
 //                return false;
@@ -85,7 +75,9 @@
 //        }
 //
 //        document.oncontextmenu = new Function("return false");
+
     </script>
+
     <script>
         var param;
         $(document).ready(function () {
@@ -105,10 +97,6 @@
             var cika;
             alert(URL);
             var dita = URL.split("&");
-//            alert(dita);
-//            alert(dita[0]);
-//            alert(dita[1]);
-//            alert(dita[3]);
             var usrid = dita[3];
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "cekSession?" + dita[3], true);
@@ -122,11 +110,7 @@
 //                    alert('a : ' + a);
                     if (a != 0) {
                         document.getElementById("userbk").value = usrid.replace("userid=", "");
-//                        document.getElementById("password").innerHTML = dita[3];
-//                        $('#myModal').modal('show');
                         $('#myModal').modal({backdrop: 'static', keyboard: false, show: true});
-//                          test123();
-//                        $('#myModal').modal({backdrop:'static',keyboard:false, show:true});
                     } else {
                         URL = "validationPage?tujuan=" + URL + "&servRus=" + window.location;
                         //alert(URL);
@@ -135,6 +119,7 @@
                 }
             };
         }
+
         function checkSes(URL) {
 //            alert(URL);
             var xhttp = new XMLHttpRequest();
@@ -229,7 +214,6 @@
         }
 
         function loadBodyPost(URL) {
-//            alert(URL);
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState === 4 && xhttp.status === 200) {
@@ -254,12 +238,12 @@
             });
 //            alert('ada');
         }
-        
+
         function loadPage(URL) {
             //alert(URL);
-           $("#test1").load(URL); 
+            $("#test1").load(URL);
         }
-        
+
         function loadMhs(URL) {
             //alert(URL);
             var xhttp = new XMLHttpRequest();
@@ -279,32 +263,17 @@
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "cekSession", true);
             xhttp.send();
+
+            $('#myModal').modal({backdrop: 'static', keyboard: false, show: true});
         }
-        
-        function isNumberKey(evt){
+
+        function isNumberKey(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode;
-            if (charCode > 31 && (charCode < 48 || charCode > 57)){
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
                 return false;
             }
             return true;
         }
-        
+
     </script>
-
-    <!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//localhost/piwik/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', 2]);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="//localhost/piwik/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
-
 </head>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 8, 2017 5:46:55 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.scyllamobile.model.Roles" table="ROLES" schema="USCYLLA0">
+        <id name="id" type="string">
+            <column name="ID" />
+            <generator class="assigned"></generator>
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" />
+        </property>
+        <set name="userses" table="USERS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ROLE_ID" />
+            </key>
+            <one-to-many class="com.scyllamobile.model.Users" />
+        </set>
+    </class>
+</hibernate-mapping>

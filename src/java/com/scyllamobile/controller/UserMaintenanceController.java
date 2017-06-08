@@ -41,15 +41,12 @@ public class UserMaintenanceController {
         System.out.println("URL : " + defUrl);
     }
 
-    @RequestMapping(value = "userMaintenance", method = RequestMethod.GET)
+    @RequestMapping(value = "masterUser", method = RequestMethod.GET)
     private ModelAndView getListUser(HttpServletRequest request, HttpServletResponse response, String pesan) throws IOException {
         Map map = new HashMap();
         ArrayList profile = (ArrayList) request.getSession().getAttribute("profil");
         String currGroup = profile.get(1).toString();
-        
-        
-        System.out.println("test user maintenance");
-        
+                
         try {
            UserDao ud = new UserDaoImp();
            

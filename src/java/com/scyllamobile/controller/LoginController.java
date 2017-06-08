@@ -6,6 +6,13 @@ package com.scyllamobile.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.google.gson.Gson;
+import com.scyllamobile.dao.LoginDao;
+import com.scyllamobile.dao.UserDao;
+import com.scyllamobile.imp.LoginDaoImp;
+import com.scyllamobile.imp.UserDaoImp;
+import com.scyllamobile.model.Roles;
+import com.scyllamobile.model.TUser;
+import com.scyllamobile.model.Users;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,21 +21,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.net.URL;
 import java.net.UnknownHostException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -36,7 +38,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Gustiana
  */
 @Controller
-public class LoginController {
+public class LoginController extends MenuController {
 
     Gson gson = new Gson();
     CallWebServiceController serviceController = new CallWebServiceController();
@@ -52,16 +54,26 @@ public class LoginController {
     List macList = new ArrayList();
     String expired = "";
     String sukses = "";
+    String hari = "";
+    String jam = "";
 
     public void getPropUrl() {
 
         PropertiesController pc = new PropertiesController();
 
-        //defUrl = pc.prop();
-//        defUrl = " http://localhost:8080/BSCMS_Server/";
-        defUrl = " http://localhost:8084/smbackend/";
+        defUrl = pc.prop();
 
         System.out.println("URL : " + defUrl);
+    }
+
+    public void getPropLog() {
+
+        Date date = new Date();
+        DateFormat Formathari = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat Formatjam = new SimpleDateFormat("HH:mm:ss");
+        hari = Formathari.format(date);
+        jam = Formatjam.format(date);
+
     }
 
     public String logout(HttpServletRequest request) {
@@ -70,6 +82,7 @@ public class LoginController {
         String cek_user = "";
         cek_user = request.getParameter("userid");
         System.out.println("cek user " + cek_user);
+
         if (!cek_user.equals("") || cek_user != null || !cek_user.contains("null") || !cek_user.isEmpty()) {
             Username = cek_user;
         } else {
@@ -86,7 +99,6 @@ public class LoginController {
     }
 
     //logout new
-
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     private ModelAndView getLogout(HttpServletRequest request, HttpServletResponse response) {
         newtab = 0;
@@ -94,6 +106,7 @@ public class LoginController {
         String cek_user = "";
         cek_user = request.getParameter("userid");
         System.out.println("cek user " + cek_user);
+        
         if (!cek_user.equals("") || cek_user != null || !cek_user.contains("null") || !cek_user.isEmpty()) {
             Username = cek_user;
         } else {
@@ -126,11 +139,18 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     private ModelAndView getLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, Exception {
         System.out.println("masuk login post");
+        String password = request.getParameter("password");
+        String username = request.getParameter("username");
+
         Map map = new HashMap();
+
         try {
             String kaptchaExpected = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
             String kaptchaReceived = request.getParameter("kaptcha");
             String textResult = "";
+
+            getPropLog();
+            getPropUrl();
 
             if (kaptchaReceived == null || !kaptchaReceived.equalsIgnoreCase(kaptchaExpected)) {
                 System.out.println("gagal kaptcha");
@@ -145,19 +165,8 @@ public class LoginController {
                 textResult = "Congratulation you're entered correct code";
 
                 newtab1 = 0;
-
-                String ret = "";
-                getPropUrl();
-
-                System.out.println("new method login ");
-                String password = request.getParameter("password");
-                String username = request.getParameter("username");
-
                 Username = username.toUpperCase();
                 Password = password;
-                Enkripsi ek = new Enkripsi();
-                String UsernameEnk = ek.encrypt(Username);
-                String PasswordEnk = ek.encrypt(Password);
 
                 //GET MAC ADDRESS 
                 InetAddress ip;
@@ -188,63 +197,65 @@ public class LoginController {
                 request.getSession().setAttribute("macaddr", macadd);
                 //END OF GET MAC ADDRESS
 
-                //set param
-                org.json.simple.JSONObject userpass = new org.json.simple.JSONObject();
-                userpass.put("username", UsernameEnk);
-                userpass.put("password", PasswordEnk);
+                LoginDao ld = new LoginDaoImp();
+//                UserDao ud = new UserDaoImp();
 
-                //Call Service
-                String url = defUrl + "doLogin";
-                List retService = serviceController.callService(url, userpass);
-                if (retService.get(0).toString() == "0") {
+                int retCode = ld.getLogin(username, password);
+
+                if (retCode == 0) {
 
                     ArrayList list = new ArrayList();
-                    ArrayList result = new ArrayList();
-                    String listMenu;
-                    JSONObject listDashboard = new JSONObject(retService.get(1).toString());
-                    JSONArray arResult = listDashboard.getJSONArray("result");
-                    for (int i = 0; i < arResult.length(); i++) {
-                        JSONObject retCode = arResult.getJSONObject(i);
-                        result.add(retCode.getString("retcode").trim());
-                        result.add(retCode.getString("message").trim());
-                    }
 
-                    System.out.println("result : " + result.get(0));
+                    Users user = ld.dataUser(username);
+                    Roles roles = user.getRoles();
 
-                    if (result.get(0).toString().equals("0")) {
-                        listMenu = listDashboard.getString("menu");
-                        JSONArray listProfil = listDashboard.getJSONArray("dataUser");
-                        for (int i = 0; i < listProfil.length(); i++) {
-                            JSONObject profil = listProfil.getJSONObject(i);
-                            list.add(profil.getString("username").trim());
-                            list.add(profil.getString("usergroup").trim());
-                            list.add(profil.getString("password").trim());
-                            list.add(profil.getString("email").trim());
-                            list.add(profil.getString("telepon").trim());
-                            list.add(profil.getString("logdate").trim());
-                            list.add(profil.getString("logtime").trim());
-                        }
+                    list.add(user.getEmail());
+                    list.add(roles.getName());
+                    list.add(user.getPasswordHash());
+                    list.add(user.getEmail());
+                    list.add(user.getEmail());
+                    list.add(hari);
+                    list.add(jam);
 
-                        request.getSession().removeAttribute("profil");
-                        request.getSession().removeAttribute("menuku");
-                        request.getSession().removeAttribute("logout");
-                        
-                        request.getSession().setAttribute("profil", list);
-                        request.getSession().setAttribute("menuku", listMenu);
-                        request.getSession().setAttribute("logout", Username);
+                    String listMenu = getMenu(user.getEmail().trim(), roles.getId().trim());
 
-                        System.out.println("sukses semua");
-                        return new ModelAndView("redirect:dashboard");
-                    } else {
-                        System.out.println("result != 0");
-                        map.put("retcode", "Code : " + result.get(0));
-                        map.put("message", "Message : " + result.get(1));
-                        return new ModelAndView("login", map);
-                    }
-                } else {
+                    request.getSession().removeAttribute("profil");
+                    request.getSession().removeAttribute("menuku");
+                    request.getSession().removeAttribute("logout");
+                    
+                    
+                    request.getSession().setAttribute("profil", list);
+                    request.getSession().setAttribute("menuku", listMenu);
+                    request.getSession().setAttribute("logout", username);
 
-                    map.put("message", "Message : " + retService.get(1).toString());
+                    System.out.println("sukses semua");
+                    return new ModelAndView("redirect:dashboard");
+
+                } else if (retCode == 1) {
+                    System.out.println("Gagal Login User Tidak ada");
+
+                    map.put("retcode", "Code : 1");
+                    map.put("message", "Message : User Tidak Ada!");
                     return new ModelAndView("login", map);
+
+                } else if (retCode == 2) {
+                    System.out.println("Password Salah");
+                    map.put("retcode", "Code : 2");
+                    map.put("message", "Message : Password Salah!");
+                    return new ModelAndView("login", map);
+
+                } else if (retCode == 3) {
+                    System.out.println("User Tidak Aktif");
+                    map.put("retcode", "Code : 3");
+                    map.put("message", "Message : User Tidak Aktif. Silahkan hubungi Administrator!");
+                    return new ModelAndView("login", map);
+
+                } else {
+                    System.out.println("Internal Server Error");
+                    map.put("retcode", "Code : 9");
+                    map.put("message", "Message : Internal Server Error. Please call Administrator!!");
+                    return new ModelAndView("login", map);
+
                 }
             }
         } catch (Exception e) {
@@ -310,21 +321,6 @@ public class LoginController {
 
     }
 
-    public static void main(String[] args) {
-        String path = "";
-        try (BufferedReader br = new BufferedReader(new FileReader("D://url.txt"))) {
-            String sCurrentLine;
-            String abc[];
-            while ((sCurrentLine = br.readLine()) != null) {
-                path = sCurrentLine;
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("e : " + e.getMessage());
-        }
-    }
-
     @RequestMapping(value = "/loginSession", method = RequestMethod.GET)
     @ResponseBody
     private String loginSession(HttpServletRequest request, HttpServletResponse response) throws IOException, Exception {
@@ -371,63 +367,69 @@ public class LoginController {
 
         request.getSession().setAttribute("macaddr", macadd);
         //END OF GET MAC ADDRESS
-        org.json.simple.JSONObject userpass = new org.json.simple.JSONObject();
-        userpass.put("username", UsernameEnk);
-        userpass.put("password", PasswordEnk);
 
-        //Call Service
-        String url = defUrl + "doLogin";
-        List retService = serviceController.callService(url, userpass);
-        if (retService.get(0).toString() == "0") {
+        LoginDao ld = new LoginDaoImp();
+        UserDao ud = new UserDaoImp();
+        
+        System.out.println("password " + password);
+
+        int retCode = ld.getLogin(username, password);
+
+        if (retCode == 0) {
 
             ArrayList list = new ArrayList();
-            ArrayList result = new ArrayList();
-            String listMenu;
-            JSONObject listDashboard = new JSONObject(retService.get(1).toString());
-            JSONArray arResult = listDashboard.getJSONArray("result");
-            for (int i = 0; i < arResult.length(); i++) {
-                JSONObject retCode = arResult.getJSONObject(i);
-                result.add(retCode.getString("retcode").trim());
-                result.add(retCode.getString("message").trim());
-            }
 
-            System.out.println("result : " + result.get(0));
+            TUser user = ud.dataUser(username);
 
-            if (result.get(0).toString().equals("0")) {
-                listMenu = listDashboard.getString("menu");
-                JSONArray listProfil = listDashboard.getJSONArray("dataUser");
-                for (int i = 0; i < listProfil.length(); i++) {
-                    JSONObject profil = listProfil.getJSONObject(i);
-                    list.add(profil.getString("username").trim());
-                    list.add(profil.getString("usergroup").trim());
-                    list.add(profil.getString("password").trim());
-                    list.add(profil.getString("email").trim());
-                    list.add(profil.getString("telepon").trim());
-                    list.add(profil.getString("logdate").trim());
-                    list.add(profil.getString("logtime").trim());
-                }
+            list.add(user.getUserId());
+            list.add(user.getUserGroup());
+            list.add(user.getUserPassword());
+            list.add(user.getEmail());
+            list.add(user.getTelepon());
+            list.add(hari);
+            list.add(jam);
 
-                request.getSession().removeAttribute("profil");
-                request.getSession().removeAttribute("menuku");
-                request.getSession().removeAttribute("logout");
-                
-                request.getSession().setAttribute("profil", list);
-                request.getSession().setAttribute("menuku", listMenu);
-                request.getSession().setAttribute("logout", Username);
-                ret = "0";
-                System.out.println("sukses semua");
-            } else {
-                ret = result.get(1).toString();
-                System.out.println("result != 0");
-                map.put("retcode", "Code : " + result.get(0));
-                map.put("message", "Message : " + result.get(1));
-            }
+            String listMenu = getMenu(user.getUserId().trim(), user.getUserGroup().trim());
+
+            request.getSession().removeAttribute("profil");
+            request.getSession().removeAttribute("menuku");
+            request.getSession().removeAttribute("logout");
+
+            request.getSession().setAttribute("profil", list);
+            request.getSession().setAttribute("menuku", listMenu);
+            request.getSession().setAttribute("logout", username);
+
+            System.out.println("sukses semua");
+            ret="0";
+
+        } else if (retCode == 1) {
+            System.out.println("Gagal Login User Tidak ada");
+
+            map.put("retcode", "Code : 1");
+            map.put("message", "Message : User Tidak Ada!");
+            ret="1";
+
+        } else if (retCode == 2) {
+            System.out.println("Password Salah");
+            map.put("retcode", "Code : 2");
+            map.put("message", "Message : Password Salah!");
+            ret="2";
+
+        } else if (retCode == 3) {
+            System.out.println("User Tidak Aktif");
+            map.put("retcode", "Code : 3");
+            map.put("message", "Message : User Tidak Aktif. Silahkan hubungi Administrator!");
+            ret = "3";
+
         } else {
-            ret = retService.get(1).toString();
-            map.put("message", "Message : " + retService.get(1).toString());
+            System.out.println("Internal Server Error");
+            map.put("retcode", "Code : 9");
+            map.put("message", "Message : Internal Server Error. Please call Administrator!!");
+            ret="9";
+
         }
 
         return ret;
     }
-
+    
 }
